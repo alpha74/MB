@@ -1,0 +1,50 @@
+{% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+		
+	
+	
+		<div class = "col-sm-9">
+			<div class="card bg-light border-secondary">
+				<img class="card-img-top" src="{{ user.profile.image.url }}" alt="{{ user.username }}">
+				
+				<div class="card-header text-sm"> {{ user.status }} Active</div>
+				
+				<div class="card-body">
+					<h5 class = "card-title"><strong> <a href = "#"> {{ user.username }} </a> </strong></h5>
+					
+					<!-- Using date filter : See docs for more, differnet separators can be used
+					<h6 class="card-subtitle mb-2 text-muted"> {{ post.date_posted|date:"F d, Y" }} </h6>
+					-->
+					<h6 class="card-subtitle mb-2 text-muted"> {{ user.email }} </h6>
+					</br>
+					<p class="card-text"> {{ user.profile.bio }} </p>
+					
+					</br>
+					<hr>
+					
+					
+					<a href="#" class="btn btn-primary"> Button </a>
+					<a href="#" class="card-link"> Link </a>
+					
+				</div>
+			</div>
+			
+			<form method = "POST" action = "" enctype="mutlipart/form-data">
+				{% csrf_token %}
+				
+				<fieldset class = "form-group">
+					<legend class = "border-bottom mb-4"> Update Profile </legend>
+					{{ u_form | crispy }}
+					{{ p_form | crispy }}
+				</fieldset>
+				<div class = "form-group">
+					<button class = "btn btn-outline-info" type = "submit" > Update </button>
+				</div>
+			
+			</form>
+			
+		</div>
+	
+{% endblock content %}	

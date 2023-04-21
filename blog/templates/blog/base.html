@@ -1,0 +1,119 @@
+<!-- base.html -->
+
+<!-- loading static files : uncomment -->
+
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+	<head> 
+		
+		<meta charset = "utf-8">
+		<meta http-equiv = "X-UA-Compatible" content = "IE=edge">
+		<meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+	
+		<link rel = "stylesheet" href = "{% static 'blogweb/css/bootstrap.min.css' %}">
+		<script src = "{% static 'blogweb/js/jquery-3.4.1.min.js' %}"></script>
+		<script src = "{% static 'blogweb/js/bootstrap.min.js' %}"></script>
+
+		<!-- loading static files : uncomment it -->
+		<!--
+		<link rel = "stylesheet" type = "text/css" href = " {% static 'assets/file.css' %}">
+		!-->
+		
+		{% if title %}
+			<title> Blog- {{ title }} </title>
+		{% else %}
+			<title> Blog </title>
+		{% endif %}		
+		
+	</head>
+	
+	<body>
+		
+		<header class = "site-header">
+			<nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+						
+				<button class = "navbar-toggler" data-toggle = "collapse" data-target = "#navbar_links">
+					<span class = "navbar-toggler-icon"></span>
+				</button>
+			
+				<a class = "navbar-brand" href = "{% url 'blog-home' %}"> 
+					MiniBlog
+				</a>
+			
+				<div class = "collapse navbar-collapse" id = "navbar_links">
+				
+					<ul class = "navbar-nav">
+						
+						<li class = "nav-items">
+							<a class = "nav-link" href = "{% url 'blog-home' %}"> Home </a>
+						</li
+						<li class = "nav-item">
+							<a class = "nav-link" href = "{% url 'blog-about' %}"> About </a>
+						</li>
+						
+					</ul>
+					<ul class = "nav navbar-nav navbar-right">
+					
+						{% if user.is_authenticated %}
+							<li class = "nav-items">
+								<a class = "nav-link" href = "{% url 'profile' %}"> {{ user.username }} </a>
+							</li>
+							<li class = "nav-items">
+								<a class = "nav-link" href = "{% url 'logout' %}"> Logout </a>
+							</li>
+						
+						{% else %}
+							<li class = "nav-items">
+								<a class = "nav-link" href = "{% url 'login' %}"> Login </a>
+							</li>
+							<li class = "nav-item">
+								<a class = "nav-link" href = "{% url 'register' %}"> Register </a>
+							</li>
+						{% endif %}
+					</ul>
+				</div>
+			</nav>
+		</header>	
+		
+		</br>
+		
+		<main role = "main" class = "container">
+			<div class = "row">
+				<div class = "col-md-7">
+				
+					<!-- Flash messages -->
+					{% if messages %}
+						{% for message in messages %}
+							
+							<div class = "alert alert-{{message.tags}}">
+								{{ message }}
+							</div>
+							
+						{% endfor %}
+					{% endif %}
+					
+					{% block content %}{% endblock %}
+				</div>
+				
+				<div class = "col-md-4">
+					<div class = "content-selection">
+						<h3> Sidebar </h3>
+						<p class = 'text-muted'> 
+							Updates 
+							
+							<ul class = "list-group">
+								<li class = "list-group-item list-group-item-light"><a href = "{% url 'post-new' %}"> New Post </a></li>
+								<li class = "list-group-item list-group-item-light"> My Posts </li>
+								<li class = "list-group-item list-group-item-light"> Calendar </li>
+								<li class = "list-group-item list-group-item-light"> Settings </li>
+							</ul>
+						</p>	
+					</div>
+				</div>
+			</div>
+		</main>
+		
+	</body>
+</html>
