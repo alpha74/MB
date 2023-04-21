@@ -1,4 +1,6 @@
-# MiniBlog
+<img src="https://img.freepik.com/free-icon/blogging_318-883190.jpg?w=2000" height="100px" width="100px">
+
+## MiniBlog
 
 A simple multi-user blogging website made using Django and Bootstrap, made using MVC architecture. Database used is SQLite.
 
