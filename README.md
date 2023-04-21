@@ -26,4 +26,4 @@ A simple multi-user blogging website made using Django and Bootstrap, made using
 
 - Home page
 
-![Home page](https://github.com/alpha74/MiniBlog_Django/blob/master/screenshots/ss1.jpg)
+![home_page](https://user-images.githubusercontent.com/31771552/233617371-dedda7dd-a09b-4417-a163-4bb1defae51a.png)
